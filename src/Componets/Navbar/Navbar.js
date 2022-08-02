@@ -7,11 +7,12 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
+
 const NavbarBoostrap = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="#">Ecommerce</Navbar.Brand>
+                <Navbar.Brand href="/">Ecommerce</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -19,9 +20,9 @@ const NavbarBoostrap = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Desiertos</Nav.Link>
-                        <Nav.Link href="#action2">Nevados</Nav.Link>
-                        <Nav.Link href="#action2">Selvas</Nav.Link>
+                        <Nav.Link href='/category/Desiertos'>Desiertos</Nav.Link>
+                        <Nav.Link href='/category/Nieve'>Nevados</Nav.Link>
+                        <Nav.Link href='/category/Selvas'>Selvas</Nav.Link>
                         <NavDropdown title="Colombia" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">Desierto de la Tatacoa</NavDropdown.Item>
                             <NavDropdown.Item href="#action4"> Desierto de La Guajira </NavDropdown.Item>

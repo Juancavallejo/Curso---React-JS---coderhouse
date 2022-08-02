@@ -158,6 +158,22 @@ export const getItemsBack = () => {
     return new Promise ((resolve) => {
         setTimeout(() => {
             resolve(items)
-        }, 1500);
+        }, 500);
     })
 }
+export const getItemsByCategory = (categoryId) => {
+    return new Promise ((resolve) => {
+        setTimeout(() => {
+            resolve(items.filter (prod => prod.category === categoryId ))
+        }, 500);
+    })
+}
+
+export const getItemsById = (id) => {
+    return new Promise ((resolve) => {
+        setTimeout(() => {
+            resolve(items.find (prod => prod.id === id))
+        }, 500);
+    })
+}
+

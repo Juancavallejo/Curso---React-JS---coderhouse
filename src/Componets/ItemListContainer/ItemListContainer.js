@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react"
-import { getItemsBack } from "../../asyncMock"
+import { getItemsBack, getItemsByCategory } from "../../asyncMock"
 import ItemList from "../ItemList/ItemList"
+import {useParams} from 'react-router-dom'
 
-const ItemListContainer = ({MensajeBienvenida}) => {
+
+const ItemListContainer = ({mensajeBienvenida}) => {
     const [items, setItems] = useState ([])
+    const {categoryId} = useParams ()
     
     useEffect (() => {
-        getItemsBack().then (items =>{
+        const getItems = categoryId ? getItemsByCategory : getItemsBack
+        
+        getItems(categoryId).then(items => {
             setItems (items)
         })
-    }, [])
+    }, [categoryId])
 
     return (
         <>
-            <h1 className="text-center fs-5 mt-5">{MensajeBienvenida}</h1>
+            <h1 className="text-center fs-5 mt-5">{mensajeBienvenida}</h1>
             <ItemList items ={items} />
 
         </>
