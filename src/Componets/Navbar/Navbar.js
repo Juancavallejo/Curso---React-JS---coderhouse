@@ -4,8 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import CardWidget from '../CartWidget/CartWidget';
 
 
 const NavbarBoostrap = () => {
@@ -20,8 +19,8 @@ const NavbarBoostrap = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href='/category/Desiertos'>Desiertos</Nav.Link>
-                        <Nav.Link href='/category/Nieve'>Nevados</Nav.Link>
+                        <Nav.Link href='/category/Desierto'>Desiertos</Nav.Link>
+                        <Nav.Link href='/category/Nevados'>Nevados</Nav.Link>
                         <Nav.Link href='/category/Selvas'>Selvas</Nav.Link>
                         {/* <NavDropdown title="Colombia" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="#action3">Desierto de la Tatacoa</NavDropdown.Item>
@@ -33,7 +32,7 @@ const NavbarBoostrap = () => {
                         </NavDropdown> */}
                     </Nav>
                     <Form className="d-flex justify-content-end">
-                        <div className="d-flex mx-4 mt-2"> 1 <FontAwesomeIcon icon={faCartShopping}/> </div>
+                        <div className="d-flex mx-4 mt-2"> <CardWidget/> </div>
                         <Form.Control
                             type="search"
                             placeholder="Search"

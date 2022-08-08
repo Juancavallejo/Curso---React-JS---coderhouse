@@ -5,21 +5,18 @@ import { useParams } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import "./ItemDetailContainer.css"
 
-
-
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState()
+    const [product,setProduct] = useState()
     const { productId } = useParams()
 
     useEffect(() => {
-        getItemsById(productId)
-            .then(product => {
+        getItemsById(productId).then(product => {
                 setProduct(product)
             })
             .catch(error => {
                 console.log(error)
             })
-    }, [])
+    }, [productId])
 
     return (
         <Container>

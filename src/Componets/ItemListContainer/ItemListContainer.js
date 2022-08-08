@@ -13,14 +13,15 @@ const ItemListContainer = ({mensajeBienvenida}) => {
         
         getItems(categoryId).then(items => {
             setItems (items)
+        }).catch(error => {
+            console.log (error)
         })
     }, [categoryId])
 
     return (
         <>
-            <h1 className="text-center fs-5 mt-5">{mensajeBienvenida}</h1>
+            <h1 className="text-center fs-5 mt-5">{`${mensajeBienvenida} ${categoryId ||""}`}</h1>
             <ItemList items ={items} />
-
         </>
 
     )
