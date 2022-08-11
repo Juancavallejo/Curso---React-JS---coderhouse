@@ -1,0 +1,12 @@
+.socialMedia-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.socialMedia-container a{
+    font-size: 2rem;
+    color: black;
+}
+

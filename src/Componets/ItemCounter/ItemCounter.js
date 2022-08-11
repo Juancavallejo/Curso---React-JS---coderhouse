@@ -1,4 +1,6 @@
 import { useState } from "react";
+import './ItemCounter.css'
+import Container from 'react-bootstrap/Container';
 
 const ItemCounter = ({ stock = 0, initial = 1, onAdd }) => {
     const [count, setCount] = useState(initial)
@@ -16,16 +18,16 @@ const ItemCounter = ({ stock = 0, initial = 1, onAdd }) => {
     }
 
     return (
-        <div>
-            <div>
-                <button onClick={disminuir}> -</button>
+        <Container>
+            <div className="counterBtn">
+                <button className='btn btn-outline-light m-3' onClick={disminuir}> -</button>
                 <h4>{count}</h4>
-                <button onClick={aumentar}> +</button>
+                <button className='btn btn-outline-light m-3' onClick={aumentar}> +</button>
             </div>
             <div>
-                <button onClick={() => onAdd (count)}> Agregar al carrito </button>
+                <button className='btn btn-outline-light mb-4' onClick={() => onAdd (count)}> Agregar al carrito </button>
             </div>
-        </div>
+        </Container>
     )
 }
 

@@ -1,0 +1,9 @@
+
+.cardList {
+    transition: all 0.3s;
+}
+
+.cardList:hover {
+ transform: scale(1.02);
+
+}

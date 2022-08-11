@@ -36,7 +36,7 @@ const ItemDetail = ({ id, name, price, description, img, container, conservation
                             cantidadAñadir === 0 ? (
                             <ItemCounter onAdd={handleOnAdd} stock={stock} initial={cantidadProducto}/>
                               ) : (
-                                    <Link to= '/cart'>Finalizar compra</Link>
+                                    <Link className='btn btn-outline-light' to= '/cart'>Finalizar compra</Link>
                               ) 
                             } 
                         </div>

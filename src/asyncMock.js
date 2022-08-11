@@ -136,7 +136,7 @@ const items = [
         id: "16",
         name: "Desierto de la tatacoa",
         price: 1000,
-        category: "Desierto",
+        category: "Colombia",
         stock: "10",
         description:"Descripción de arena del sahara"
     },
@@ -144,7 +144,7 @@ const items = [
         id: "17",
         name: "Desierto de la Guajira ",
         price: 1000,
-        category: "Desierto",
+        category: "Colombia",
         stock: "10",
         description:"Descripción de arena del sahara"
     },     
@@ -152,7 +152,7 @@ const items = [
         id: "18",
         name: "Agua del rio Amazonas",
         price: 1000,
-        category: "Selvas",
+        category: "Colombia",
         stock: "10",
         description:"Descripción de arena del sahara"
     },    
@@ -160,7 +160,7 @@ const items = [
         id: "19",
         name: "Agua del rio de los 7 colores ",
         price: 1000,
-        category: "Selvas",
+        category: "Colombia",
         stock: "10",
         description:"Descripción de arena del sahara"
     },
@@ -168,7 +168,7 @@ const items = [
         id: "20",
         name: "Nieve del Nevado del Ruiz ",
         price: 1000,
-        category: "Nevados",
+        category: "Colombia",
         stock: "10",
         description:"Descripción de arena del sahara"
     },
