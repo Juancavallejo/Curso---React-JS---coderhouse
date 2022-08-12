@@ -4,13 +4,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CardWidget from '../CartWidget/CartWidget';
+import { Link } from 'react-router-dom';
 
 
 const NavbarBoostrap = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="/">Ecommerce</Navbar.Brand>
+                <Link className='btn btn-outline-dark mx-1' to="/">Ecommerce</Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -18,10 +19,10 @@ const NavbarBoostrap = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href='/category/Desierto'>Desiertos</Nav.Link>
-                        <Nav.Link href='/category/Nevados'>Nevados</Nav.Link>
-                        <Nav.Link href='/category/Selvas'>Selvas</Nav.Link>
-                        <Nav.Link href='/category/Colombia'>Colombia</Nav.Link>
+                        <Link className='btn btn-outline-dark mx-1' to='/category/Desierto'>Desiertos</Link>
+                        <Link className='btn btn-outline-dark mx-1' to='/category/Nevados'>Nevados</Link>
+                        <Link className='btn btn-outline-dark mx-1' to='/category/Rios'>Rios</Link>
+                        <Link className='btn btn-outline-dark mx-1' to='/category/Colombia'>Colombia</Link>
                     </Nav>
                     <Form className="d-flex justify-content-end">
                         <div className="d-flex mx-4 w-50"> <CardWidget/> </div>

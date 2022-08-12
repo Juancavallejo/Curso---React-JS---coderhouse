@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getItemsById } from "../../asyncMock"
+import { getItemsById } from "../../backEnd"
 import ItemDetail from "../ItemDetail/ItemDetail"
 import { useParams } from "react-router-dom"
 import Container from 'react-bootstrap/Container';

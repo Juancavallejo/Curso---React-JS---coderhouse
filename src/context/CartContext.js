@@ -5,15 +5,15 @@ const CartContext = createContext()
 export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState ([])
 
-    const addItem = (productToAdd) => {
-        if (!isInCart(productToAdd.id)) {
-            setCart ([...cart, productToAdd])
+    const agregarItem = (itemToAdd) => {
+        if (!isInCart(itemToAdd.id)) {
+            setCart ([...cart, itemToAdd])
         } else {
             const cartUpdated = cart.map (prod => {
-                if (prod.id === productToAdd.id){
+                if (prod.id === itemToAdd.id){
                     const productUpdated = {
                         ...prod,
-                        quantity: productToAdd.quantity
+                        quantity: itemToAdd.quantity
                     } 
                     return productUpdated
                 } else {
@@ -26,13 +26,23 @@ export const CartContextProvider = ({ children }) => {
     }
 
     const obtenerCantidad = () => {
-        let accu = 0
+        let acumulador = 0
 
-        cart.forEach(prod => {
-        accu += prod.quantity
+        cart.forEach(item => {
+            acumulador += item.quantity
         })
 
-        return accu
+        return acumulador
+    }
+
+    const getProductQuantity = (id) => {
+        const product = cart.find(prod => prod.id === id)
+
+        return product?.quantity
+    }
+
+    const clearCart = () => {
+        setCart([])
     }
 
     const isInCart = (id) => {
@@ -44,18 +54,8 @@ export const CartContextProvider = ({ children }) => {
         setCart (newCartSinProduct)
     }
 
-    const clearCart = () => {
-        setCart([])
-    }
-
-    const getProductQuantity = (id) => {
-        const product = cart.find(prod => prod.id === id)
-
-        return product?.quantity
-    }
-
     return (
-         <CartContext.Provider value={{cart, addItem, obtenerCantidad, isInCart, removeItem, clearCart, getProductQuantity }} >
+         <CartContext.Provider value={{cart, agregarItem, obtenerCantidad, isInCart, removeItem, clearCart, getProductQuantity }} >
             {children}
         </CartContext.Provider>
     )

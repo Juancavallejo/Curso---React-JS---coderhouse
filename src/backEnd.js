@@ -102,34 +102,38 @@ const items = [
     },
     {
         id: "12",
-        name: "Frutos de ",
+        name: "Agua del rio Nilo ",
         price: 1000,
-        category: "Selvas",
+        category: "Rios",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Nilo.png`,
         description:"Descripción de arena del sahara"
     },
     {
         id: "13",
-        name: "Frutos de ",
+        name: "Agua del rio Yangtsé ",
         price: 1000,
-        category: "Selvas",
+        category: "Rios",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Yangtze.png`,
         description:"Descripción de arena del sahara"
     },   
      {
         id: "14",
-        name: "Frutos de ",
+        name: "Agua del rio Misisipi ",
         price: 1000,
-        category: "Selvas",
+        category: "Rios",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Misisipi.png`,
         description:"Descripción de arena del sahara"
     },   
      {
         id: "15",
-        name: "Frutos de ",
+        name: "Agua del rio Ganges",
         price: 1000,
-        category: "Selvas",
+        category: "Rios",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Ganges.png`,
         description:"Descripción de arena del sahara"
     },
     {
@@ -138,6 +142,7 @@ const items = [
         price: 1000,
         category: "Colombia",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Tatacoa.png`,
         description:"Descripción de arena del sahara"
     },
     {
@@ -146,6 +151,7 @@ const items = [
         price: 1000,
         category: "Colombia",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Guajira.png`,
         description:"Descripción de arena del sahara"
     },     
     {
@@ -154,6 +160,7 @@ const items = [
         price: 1000,
         category: "Colombia",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Amazonas.png`,
         description:"Descripción de arena del sahara"
     },    
     {
@@ -162,6 +169,7 @@ const items = [
         price: 1000,
         category: "Colombia",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/SieteColores.jpg`,
         description:"Descripción de arena del sahara"
     },
     {
@@ -170,6 +178,7 @@ const items = [
         price: 1000,
         category: "Colombia",
         stock: "10",
+        img: `${process.env.PUBLIC_URL}/assets/Ruiz.png`,
         description:"Descripción de arena del sahara"
     },
 ]
@@ -184,7 +193,7 @@ export const getItemsBack = () => {
 export const getItemsByCategory = (categoryId) => {
     return new Promise ((resolve) => {
         setTimeout(() => {
-            resolve(items.filter (prod => prod.category === categoryId ))
+            resolve(items.filter (item => item.category === categoryId ))
         }, 500);
     })
 }
@@ -192,7 +201,7 @@ export const getItemsByCategory = (categoryId) => {
 export const getItemsById = (id) => {
     return new Promise ((resolve) => {
         setTimeout(() => {
-            resolve(items.find (prod => prod.id === id))
+            resolve(items.find (item => item.id === id))
         }, 500);
     })
 }

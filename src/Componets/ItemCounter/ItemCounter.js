@@ -2,7 +2,7 @@ import { useState } from "react";
 import './ItemCounter.css'
 import Container from 'react-bootstrap/Container';
 
-const ItemCounter = ({ stock = 0, initial = 1, onAdd }) => {
+const ItemCounter = ({ stock = 0, initial = 1, agregar }) => {
     const [count, setCount] = useState(initial)
 
     const aumentar = () => {
@@ -25,7 +25,7 @@ const ItemCounter = ({ stock = 0, initial = 1, onAdd }) => {
                 <button className='btn btn-outline-light m-3' onClick={aumentar}> +</button>
             </div>
             <div>
-                <button className='btn btn-outline-light mb-4' onClick={() => onAdd (count)}> Agregar al carrito </button>
+                <button className='btn btn-outline-light mb-4' onClick={() => agregar (count)}> Agregar al carrito </button>
             </div>
         </Container>
     )
