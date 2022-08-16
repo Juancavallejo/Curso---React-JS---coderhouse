@@ -53,7 +53,9 @@ const items = [
         category: "Nevados",
         stock: "10",
         img: `${process.env.PUBLIC_URL}/assets/Everest.jpg`,
-        description:"La montaña más alta del planeta con 8.848 m.s.n.m, muy pocas personas han podido llegar a su cumbre. Muchos han fallecido en el intento"
+        description:"La montaña más alta del planeta con 8.848 m.s.n.m, muy pocas personas han podido llegar a su cumbre. Muchos han fallecido en el intento",
+        container:"Este producto tiene un empaque que lo aisla de la humedad" ,
+        delivery: "Una vez realizado el pedido se realizará la entrega del producto en 10 dias habiles"
     },
     {
         id: "7",

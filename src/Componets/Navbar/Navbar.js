@@ -19,8 +19,8 @@ const NavbarBoostrap = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Link className='btn btn-outline-dark mx-1' to='/category/Desierto'>Desiertos</Link>
                         <Link className='btn btn-outline-dark mx-1' to='/category/Nevados'>Nevados</Link>
+                        <Link className='btn btn-outline-dark mx-1' to='/category/Desierto'>Desiertos</Link>
                         <Link className='btn btn-outline-dark mx-1' to='/category/Rios'>Rios</Link>
                         <Link className='btn btn-outline-dark mx-1' to='/category/Colombia'>Colombia</Link>
                     </Nav>

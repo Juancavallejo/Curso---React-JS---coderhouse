@@ -1,27 +1,40 @@
 import { useState, useEffect } from "react"
-import { getItemsBack, getItemsByCategory } from "../../backEnd"
 import ItemList from "../ItemList/ItemList"
 import {useParams} from 'react-router-dom'
-
+import { getDocs, collection, query, where } from "firebase/firestore"
+import { dataBase } from "../../services/firebase"
 
 const ItemListContainer = ({mensajeBienvenida}) => {
-    const [items, setItems] = useState ([])
+    const [listItems, setListItems] = useState ([])
     const {categoryId} = useParams ()
     
     useEffect (() => {
-        const getItems = categoryId ? getItemsByCategory : getItemsBack
+        
+        const collectionRef = !categoryId 
+        ? collection (dataBase, 'items')
+        : query (collection (dataBase, 'items'), where('category','==', categoryId))
+
+        getDocs (collectionRef).then(response => {
+            const itemsDataBase = response.docs.map (item => {
+                const dataItems = item.data ()
+                return { id: item.id, ...dataItems}
+            })
+            setListItems (itemsDataBase)
+        })
+
+        /* const getItems = categoryId ? getItemsByCategory : getItemsBack
         
         getItems(categoryId).then(items => {
             setItems (items)
         }).catch(error => {
             console.log (error)
-        })
+        }) */
     }, [categoryId])
 
     return (
         <>
             <h1 className="text-center fs-5 mt-5">{`${mensajeBienvenida} ${categoryId ||""}`}</h1>
-            <ItemList items ={items} />
+            <ItemList items ={listItems} />
         </>
 
     )

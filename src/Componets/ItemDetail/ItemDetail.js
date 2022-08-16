@@ -13,7 +13,7 @@ const ItemDetail = ({ id, name, price, description, img, container, conservation
         setCantidadAñadir (quantity)
 
         const itemToAdd = {
-            id,name, price, quantity
+            id,name, price, quantity, img
         }
 
         agregarItem (itemToAdd)
@@ -26,7 +26,6 @@ const ItemDetail = ({ id, name, price, description, img, container, conservation
                 <Card >
                     <Card.Body className='bg-secondary text-light'>
                         <Card.Title>{name}</Card.Title>
-                        <Card.Img variant="top" src={img} style={{ width:'50rem', height:'26rem' }}/>
                         <Card.Text>{description}</Card.Text>
                         <Card.Text>${price}</Card.Text>
                         <Card.Text className='text-start'>{container}</Card.Text>
