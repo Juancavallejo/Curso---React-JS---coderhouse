@@ -22,13 +22,6 @@ const ItemListContainer = ({mensajeBienvenida}) => {
             setListItems (itemsDataBase)
         })
 
-        /* const getItems = categoryId ? getItemsByCategory : getItemsBack
-        
-        getItems(categoryId).then(items => {
-            setItems (items)
-        }).catch(error => {
-            console.log (error)
-        }) */
     }, [categoryId])
 
     return (

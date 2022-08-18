@@ -6,8 +6,8 @@ import Button from 'react-bootstrap/Button';
 import CardWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
 
-
 const NavbarBoostrap = () => {
+    
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
@@ -25,7 +25,7 @@ const NavbarBoostrap = () => {
                         <Link className='btn btn-outline-dark mx-1' to='/category/Colombia'>Colombia</Link>
                     </Nav>
                     <Form className="d-flex justify-content-end">
-                        <div className="d-flex mx-4 w-50"> <CardWidget/> </div>
+                        <div className="d-flex mx-4 w-50"> <CardWidget /> </div>
                         <Form.Control
                             type="search"
                             placeholder="Search"

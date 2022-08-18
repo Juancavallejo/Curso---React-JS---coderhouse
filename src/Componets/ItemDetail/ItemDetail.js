@@ -23,9 +23,10 @@ const ItemDetail = ({ id, name, price, description, img, container, conservation
     
     
     return (
-                <Card >
-                    <Card.Body className='bg-secondary text-light'>
+                <Card className='mt-4'>
+                    <Card.Body className='bg-secondary text-light' style={{ width:'55rem' }}>
                         <Card.Title>{name}</Card.Title>
+                        <Card.Img variant="top" src={img} style={{ width:'50rem', height:'26rem' }}/>
                         <Card.Text>{description}</Card.Text>
                         <Card.Text>${price}</Card.Text>
                         <Card.Text className='text-start'>{container}</Card.Text>
@@ -33,9 +34,9 @@ const ItemDetail = ({ id, name, price, description, img, container, conservation
                         <Card.Text className='text-start'>{delivery}</Card.Text>
                         <div> {
                             cantidadAñadir === 0 ? (
-                            <ItemCounter agregar={handleAgregar} stock={stock} initial={cantidadProducto}/>
+                            <ItemCounter agregarItem={handleAgregar} stock={stock} initial={cantidadProducto}/>
                               ) : (
-                                    <Link className='btn btn-outline-light' to= '/cart'>Finalizar compra</Link>
+                                    <Link className='btn btn-success' to= '/cart'>Finalizar compra</Link>
                               ) 
                             } 
                         </div>

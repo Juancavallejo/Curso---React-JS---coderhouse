@@ -6,6 +6,18 @@ export const CartContextProvider = ({ children }) => {
     const [cartItems, setItemsCart] = useState ([])
 
     const agregarItem = (itemToAdd) => {
+/*         const exist = cartItems.find ((prod) => prod.id === itemToAdd.id);
+        if (exist) {
+            setItemsCart (
+                cartItems.map ((prod) =>
+                prod.id === itemToAdd.id ? {...exist, quantity:exist.quantity} : x
+                )
+            );
+        } else {
+            setItemsCart ([...cartItems, itemToAdd])
+        }
+    }  */
+        
         if (!isInCart(itemToAdd.id)) {
             setItemsCart ([...cartItems, itemToAdd])
         } else {
@@ -50,8 +62,7 @@ export const CartContextProvider = ({ children }) => {
     } 
 
     const removeItem = (id) => {
-        const newCartSinProduct = cartItems.filter (prod => prod.id !== id)
-        setItemsCart (newCartSinProduct)
+        setItemsCart (cartItems.filter ((prod) => prod.id !== id))
     }
 
     return (

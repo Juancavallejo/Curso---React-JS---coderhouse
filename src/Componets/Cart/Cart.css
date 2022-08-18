@@ -1,0 +1,8 @@
+.mainContainer {
+    min-height: 77vh;
+}
+
+.itemContainer {
+    display: flex;
+    flex-direction: column;
+}
