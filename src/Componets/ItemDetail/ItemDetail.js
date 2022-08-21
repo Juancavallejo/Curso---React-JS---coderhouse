@@ -3,11 +3,13 @@ import Card from 'react-bootstrap/Card';
 import ItemCounter from '../ItemCounter/ItemCounter';
 import { Link } from 'react-router-dom'
 import CartContext from '../../context/CartContext';
+import ToastContext from '../../context/ToastContext';
 
 const ItemDetail = ({ id, name, price, description, img, container, conservation, delivery, stock }) => {
     const [cantidadAñadir, setCantidadAñadir] = useState (0)
 
     const {agregarItem, getProductQuantity} = useContext (CartContext)
+    const {setToast} = useContext (ToastContext)
 
     const handleAgregar= (quantity) => {
         setCantidadAñadir (quantity)
@@ -17,6 +19,7 @@ const ItemDetail = ({ id, name, price, description, img, container, conservation
         }
 
         agregarItem (itemToAdd)
+        setToast (`Se agregó ${quantity} ${name}`,'success')
     }
 
     const cantidadProducto = getProductQuantity(id)

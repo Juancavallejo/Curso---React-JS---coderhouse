@@ -6,7 +6,8 @@ import ItemListContainer from './Componets/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './Componets/ItemDetailContainer/ItemDetailContainer';
 import Cart from './Componets/Cart/Cart';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CartContextProvider } from './context/CartContext'
+import { CartContextProvider } from './context/CartContext';
+import { ToastContextProvider } from './context/ToastContext';
 import Checkout from './Componets/Checkout/Checkout';
 
 
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContextProvider>
       <CartContextProvider>
         <BrowserRouter>
           <NavbarBoostrap />
@@ -27,6 +29,7 @@ function App() {
           <Footer />
         </BrowserRouter>
       </CartContextProvider>
+      </ToastContextProvider>
     </div>
   );
 }
