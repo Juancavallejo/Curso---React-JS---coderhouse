@@ -18,16 +18,23 @@ const ItemCounter = ({ stock = 0, initial = 1, agregarItem }) => {
     }
 
     return (
-        <Container>
-            <div className="counterBtn">
-                <button className='btn btn-light m-3' onClick={disminuir}> -</button>
-                <h4>{count}</h4>
-                <button className='btn btn-light m-3' onClick={aumentar}> +</button>
-            </div>
-            <div>
-                <button className='btn btn-success mb-4' onClick={() => agregarItem (count)}> Agregar al carrito </button>
-            </div>
-        </Container>
+        <div>
+            {stock !== 0 &&
+                <Container>
+                    <div className="counterBtn">
+                        <button className='btn btn-light m-3' onClick={disminuir}> -</button>
+                        <h4>{count}</h4>
+                        <button className='btn btn-light m-3' onClick={aumentar}> +</button>
+                    </div>
+                    <div>
+                        <button className='btn btn-success mb-4' onClick={() => agregarItem(count)}> Agregar al carrito </button>
+                    </div>
+                </Container>
+            }
+            {stock === 0 && <h4 className="text-warning"> Lo sentimos, actualmente no tenemos stock de este producto. Si deseas vuelve a intentar tu compra en los proximos dias.</h4>}
+
+        </div>
+
     )
 }
 
