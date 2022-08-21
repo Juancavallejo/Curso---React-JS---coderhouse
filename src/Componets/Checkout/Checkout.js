@@ -3,22 +3,27 @@ import CartContext from "../../context/CartContext";
 import { dataBase } from "../../services/firebase";
 import { addDoc, collection, getDocs, query, where, documentId, writeBatch } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 const Checkout = () => {
     const [loading, setLoading] = useState (false)
     const {cartItems, obtenerCantidad, clearCart} = useContext(CartContext)
     const cantidadtotal = obtenerCantidad()
     const backToHome = useNavigate ()
+
+    const [nombre, setNombre] = useState('')
+    const [dirección, setDireccion] = useState('')
     
     const createOrder = async () => {
         setLoading (true)
         try {
             const objOrder = {
                 comprador: {
-                    nombre: 'Camilo Vallejo',
+                    nombre: `${nombre}`,
                     telefono: ' 312-282-9659',
-                    dirección: 'dirección 123'
+                    dirección:`${dirección}`
                 },
+
         
                 items: cartItems,
                 cantidadtotal,
@@ -56,12 +61,12 @@ const Checkout = () => {
     
                 const orderRef = collection (dataBase, 'orders')
                 const orderAdded = await addDoc (orderRef, objOrder)
-    
+
                 console.log (`El ID de su orden es: ${orderAdded.id}`)
                 clearCart ()
                 setTimeout ( () => {
                     backToHome ('/')
-                }, 2000)
+                }, 3000)
                 
             } else {
                 console.log (` el producto no tiene suficientes unidades`)
@@ -79,12 +84,18 @@ const Checkout = () => {
     }
 
     return (
+        <Container>
         <div>
             <h2> Checkout</h2>
-            <h3>Formulario</h3>
+            <form>
+                <label> Nombre</label>
+                <input type={'text'} id="nombre" name="nombre" value={nombre} onChange={(e) =>setNombre(e.target.value)}/>
+                <label> dirección</label>
+                <input type={'text'} id="nombre" name="nombre" value={dirección} onChange={(e) =>setDireccion(e.target.value)}/>
+            </form>
             <button className='btn btn-success' onClick={createOrder}> Generar Order</button>
-            
         </div>
+        </Container>
 
     )
 }

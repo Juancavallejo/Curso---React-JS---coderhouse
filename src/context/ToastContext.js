@@ -36,7 +36,7 @@ export const ToastContextProvider = ({children}) => {
         setColor (clr)
         setTimeout (() => {
             setMensaje ('')
-        }, 5000)
+        }, 3000)
     }
 
     return (
