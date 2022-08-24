@@ -4,7 +4,7 @@ import "./Item.css";
 
 const Item = ({ product }) => {
     return (
-            <Card border="dark" className='cardList d-inline-flex m-3 ' style={{ width: '28rem', height: '37rem' }}>
+            <Card border="dark" className='shadow cardList d-inline-flex m-3 ' style={{ width: '28rem', height: '37rem' }}>
                 <Card.Img variant="top" src={product?.img} alt={product.name}/>
                 <Card.Body>
                     <Card.Title>{product.name}</Card.Title>

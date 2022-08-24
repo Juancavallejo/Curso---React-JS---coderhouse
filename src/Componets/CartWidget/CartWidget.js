@@ -11,7 +11,7 @@ const CardWidget = () => {
 
     return (
         <div>
-            {cantidad !== 0 && <Link className='btn btn-outline-dark' to='/cart'> <FontAwesomeIcon icon={faCartShopping} /> {cantidad} </Link>}
+            {cantidad !== 0 && <Link className='btn btn-outline-danger' to='/cart'> <FontAwesomeIcon icon={faCartShopping} /> {cantidad} </Link>}
         </div>
     );
 }
