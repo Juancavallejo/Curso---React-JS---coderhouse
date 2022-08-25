@@ -9,7 +9,7 @@ import ItemRecap from "../ItemRecap/ItemRecap";
 
 
 const Checkout = () => {
-    const [loading, setLoading] = useState(false)
+    const [cargando, setCargando] = useState(false)
     const { cartItems, obtenerCantidad, clearCart, precioTotal } = useContext(CartContext)
     const cantidadtotal = obtenerCantidad()
     const backToHome = useNavigate()
@@ -21,7 +21,7 @@ const Checkout = () => {
     const [ciudad, setCiudad] = useState('')
 
     const createOrder = async () => {
-        setLoading(true)
+        setCargando(true)
         try {
             const objOrder = {
                 comprador: {
@@ -82,12 +82,12 @@ const Checkout = () => {
         } catch (error) {
             console.log('Fallo de las peticiones')
         } finally {
-            setLoading(false)
+            setCargando(false)
         }
 
     }
 
-    if (loading) {
+    if (cargando) {
         return <h2> se está generando tu orden</h2>
     }
 
