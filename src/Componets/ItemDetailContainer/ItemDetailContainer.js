@@ -2,7 +2,7 @@ import ItemDetail from "../ItemDetail/ItemDetail"
 import { useParams } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import "./ItemDetailContainer.css"
-import { getdocFireStore } from "../../services/firestore";
+import { getdocFireStore } from "../../services/firebase/firestore";
 import { Spinner } from "react-bootstrap";
 import { useAsync } from "../../hooks/useAsync";
 

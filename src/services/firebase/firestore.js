@@ -1,6 +1,6 @@
 import { getDocs, collection, query, where, doc, getDoc } from "firebase/firestore"
-import { dataBase } from "./firebase"
-import { createAdaptedItemFromFirestore } from "../adapters/productAdapter"
+import { dataBase } from "."
+import { createAdaptedItemFromFirestore } from "../../adapters/productAdapter"
 
 /* Function para traer documentos, para el ItemListContainer */
 export const getdocumentsFireStore =(categoryId) => {

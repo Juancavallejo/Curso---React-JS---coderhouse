@@ -1,6 +1,6 @@
 import ItemList from "../ItemList/ItemList"
 import { useParams } from 'react-router-dom'
-import { getdocumentsFireStore } from "../../services/firestore"
+import { getdocumentsFireStore } from "../../services/firebase/firestore"
 import './ItemListContainer.css'
 import { Spinner } from "react-bootstrap"
 import { useAsync } from "../../hooks/useAsync"
