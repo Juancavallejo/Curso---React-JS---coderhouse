@@ -1,17 +1,17 @@
 import { Container, Row, Col } from "react-bootstrap"
 
-const ItemRecap = ({ itemRecap }) => {
+const ItemRecap = ({name, quantity, price }) => {
     return (
         <Container>
-            <Row className="shadow rounded border-bottom border-dark">
+            <Row className="shadow rounded border-bottom border-dark mt-2">
                 <Col>
-                    <p>{itemRecap.name}</p>
+                    <p>{name}</p>
                 </Col>
                 <Col>
-                    <p>{itemRecap.quantity} unidades</p>
+                    <p>{quantity} unidades</p>
                 </Col>
                 <Col>
-                    <p> por valor de {itemRecap.quantity * itemRecap.price} </p>
+                    <p> por valor de {quantity * price} </p>
                 </Col>
             </Row>
         </Container>

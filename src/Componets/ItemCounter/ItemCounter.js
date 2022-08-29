@@ -2,8 +2,8 @@ import { useState } from "react";
 import './ItemCounter.css'
 import Container from 'react-bootstrap/Container';
 
-const ItemCounter = ({ stock = 0, initial = 1, agregarItem }) => {
-    const [count, setCount] = useState(initial)
+const ItemCounter = ({ stock = 0, inicial = 1, agregarItem }) => {
+    const [count, setCount] = useState(inicial)
 
     const aumentar = () => {
         if (count < stock) {

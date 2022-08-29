@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 
-
-export const useAsync = (getDatosFireStore, dependencias = []) => {
+export const useCustomHooks = (obtenerDatosFireStore, dependencias = []) => {
     const [datos, setDatos] = useState()
     const [error, setError] = useState ()
     const [cargando, setCargando] = useState(true)
@@ -9,8 +8,8 @@ export const useAsync = (getDatosFireStore, dependencias = []) => {
     useEffect(() => {
         setCargando(true);
 
-        getDatosFireStore().then(response => {
-            setDatos(response);
+        obtenerDatosFireStore().then(respuesta => {
+            setDatos(respuesta);
         }).catch(error => {
             setError(error);
         }).finally(() => {

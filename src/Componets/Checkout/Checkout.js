@@ -1,24 +1,22 @@
 import { useContext, useState } from "react";
 import CartContext from "../../context/CartContext";
-import { dataBase } from "../../services/firebase";
+import FormContext from "../../context/FormContext";
+import { dataBase } from "../../services/firebase/index";
 import { addDoc, collection, getDocs, query, where, documentId, writeBatch } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import './Checkout.css'
 import ItemRecap from "../ItemRecap/ItemRecap";
-
+import Formulario from "../Formulario/Formulario";
+import Swal from "sweetalert2";
 
 const Checkout = () => {
     const [cargando, setCargando] = useState(false)
-    const { cartItems, obtenerCantidad, clearCart, precioTotal } = useContext(CartContext)
+    const { carritoDeCompras, obtenerCantidad, limpiarCarrito, precioTotal } = useContext(CartContext)
+    const {nombre,email,contacto,dirección,ciudad} = useContext (FormContext)
+
     const cantidadtotal = obtenerCantidad()
     const backToHome = useNavigate()
-
-    const [nombre, setNombre] = useState('')
-    const [email, setEmail] = useState('')
-    const [contacto, setContacto] = useState('')
-    const [dirección, setDireccion] = useState('')
-    const [ciudad, setCiudad] = useState('')
 
     const createOrder = async () => {
         setCargando(true)
@@ -32,17 +30,17 @@ const Checkout = () => {
                     ciudad: `${ciudad}`,
                 },
 
-
-                items: cartItems,
+                items: carritoDeCompras,
                 cantidadtotal,
+                precioTotal,
                 date: new Date()
             }
 
-            const idsItemsEnCart = cartItems.map(item => item.id)
+            const itemsEnCarrito = carritoDeCompras.map(item => item.id)
 
             const itemsReferencia = collection(dataBase, 'items')
 
-            const itemsFromFirestore = await getDocs(query(itemsReferencia, where(documentId(), 'in', idsItemsEnCart)))
+            const itemsFromFirestore = await getDocs(query(itemsReferencia, where(documentId(), 'in', itemsEnCarrito)))
 
             const { docs } = itemsFromFirestore
 
@@ -54,7 +52,7 @@ const Checkout = () => {
                 const dataDocument = document.data()
                 const stockDataBase = dataDocument.stock
 
-                const itemsAddedCart = cartItems.find(item => item.id === document.id)
+                const itemsAddedCart = carritoDeCompras.find(item => item.id === document.id)
                 const cantidadItems = itemsAddedCart?.quantity
 
                 if (stockDataBase >= cantidadItems) {
@@ -70,11 +68,17 @@ const Checkout = () => {
                 const orderRef = collection(dataBase, 'orders')
                 const orderAdded = await addDoc(orderRef, objOrder)
 
-                console.log(`El ID de su orden es: ${orderAdded.id}`)
-                clearCart()
+                Swal.fire({
+                    title: `Gracias ${nombre} por su compra, el comprobante de su orden es: ${orderAdded.id}. 
+                    toda la información será enviada a su correo electronico`,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 6000
+                  })
+                limpiarCarrito()
                 setTimeout(() => {
                     backToHome('/')
-                }, 3000)
+                }, 6000)
 
             } else {
                 console.log(` el producto no tiene suficientes unidades`)
@@ -88,56 +92,18 @@ const Checkout = () => {
     }
 
     if (cargando) {
-        return <h2> se está generando tu orden</h2>
+        return <h2 className="mainContainer"> se está generando tu orden</h2>
     }
-
 
     return (
         <Container className="d-flex justify-content-center mainContainer">
             <div>
                 <h2 className="m-4"> Información de envio:</h2>
                 <div className='border rounded border-3 border-dark'>
-                    {cartItems.map (prod => <ItemRecap key= {prod.id} itemRecap={prod} />)}
+                    {carritoDeCompras.map (prod => <ItemRecap key= {prod.id} {...prod} />)}
                     <h5 className="text-end mt-2 mx-2"> Gran total: {precioTotal}</h5>
                 </div>
-                <Form className="bg-light formContainer border rounded border-3 border-dark p-3 m-5">
-                    <h4>Datos de contacto </h4>
-                    <Row>
-                        <Col md={8}>
-                            <div>
-                            <label className="d-block">Nombre</label>
-                             <input className="form-control" placeholder='Nombre completo' type={'text'} id="nombre" name="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-                            </div>
-                           
-                        </Col >
-                        <Col md={4}>
-                            <div>
-                            <label className="d-block">Numero de contacto</label>
-                            <input className="border form-control" placeholder='Numero de contacto' type={'number'} id="contacto" name="contacto" value={contacto} onChange={(e) => setContacto(e.target.value)} />
-                            </div>
-                        </Col>
-                        <Col className="my-4" md={8}>
-                            <div>
-                            <label className="d-block">Correo electronico</label>
-                            <input className="border form-control" placeholder='Correo electronico' type={'email'} id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row className="mb-4">
-                        <Col md={8}>
-                        <div>
-                            <label className="d-block">Dirección</label>
-                            <input  className="border form-control" placeholder='Dirección' type={'address'} id="dirección" name="dirección" value={dirección} onChange={(e) => setDireccion(e.target.value)} />
-                            </div>
-                        </Col>
-                        <Col md={4}>
-                        <div>
-                            <label className="d-block">Ciudad/Departamento</label>
-                            <input className="border form-control" placeholder='Ciudad/Departamento' type={'text'} id="ciudad" name="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)} />
-                            </div>
-                        </Col>
-                    </Row>
-                </Form>
+                <Formulario/>
                 <button className='btn btn-success' onClick={createOrder}> Generar Order</button>
             </div>
         </Container>

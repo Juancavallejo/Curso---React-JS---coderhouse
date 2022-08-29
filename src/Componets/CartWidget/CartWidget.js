@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const CardWidget = () => {
     const { obtenerCantidad } = useContext(CartContext)
-
     const cantidad = obtenerCantidad()
 
     return (

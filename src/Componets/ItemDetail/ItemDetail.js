@@ -3,32 +3,37 @@ import Card from 'react-bootstrap/Card';
 import ItemCounter from '../ItemCounter/ItemCounter';
 import { Link } from 'react-router-dom'
 import CartContext from '../../context/CartContext';
-import ToastContext from '../../context/ToastContext';
 import { Row, Col } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
-const ItemDetail = ({ id, name, price, description, img, container, conservation, delivery, stock }) => {
+const ItemDetail = ({ id, name, price, description, img, container, delivery, stock }) => {
+    const { agregarItem, obtenerCantidadDeProductos } = useContext(CartContext)
+
     const [cantidadAñadir, setCantidadAñadir] = useState(0)
-
-    const { agregarItem, getProductQuantity } = useContext(CartContext)
-    const { setToast } = useContext(ToastContext)
 
     const handleAgregar = (quantity) => {
         setCantidadAñadir(quantity)
 
-        const itemToAdd = {
+        const itemParaAñadir = {
             id, name, price, quantity, img
         }
 
-        agregarItem(itemToAdd)
-        setToast(`Se agregó ${quantity} ${name}`, 'success')
+        agregarItem(itemParaAñadir)
+        Swal.fire({
+            title: `Se agregó ${quantity} ${name} al carrito`,
+            position: 'bottom-end',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+          })
     }
 
-    const cantidadProducto = getProductQuantity(id)
+    const cantidadProductos = obtenerCantidadDeProductos(id)
 
 
     return (
-        <Card className='mt-4'>
-            <Card.Body className='bg-secondary text-light' style={{ width: '55rem'}}>
+        <Card>
+            <Card.Body className='bg-secondary text-light' style={{ width: '55rem' }}>
                 <Card.Title>{name}</Card.Title>
                 <Row>
                     <Col md={7}>
@@ -41,16 +46,13 @@ const ItemDetail = ({ id, name, price, description, img, container, conservation
                         <div>
                             <Card.Text className='fs-6 text-start'>{container}</Card.Text>
                         </div>
-                        <div>
-
-                        </div>
                     </Col>
                 </Row>
                 <Card.Text className='pt-2 fs-5'>Tiene un costo de ${price} por unidad</Card.Text>
                 <Card.Text className='text-start'>{delivery}</Card.Text>
                 <div> {
                     cantidadAñadir === 0 ? (
-                        <ItemCounter agregarItem={handleAgregar} stock={stock} initial={cantidadProducto} />
+                        <ItemCounter agregarItem={handleAgregar} stock={stock} inicial={cantidadProductos} />
                     ) : (
                         <Link className='btn btn-success' to='/cart'>Ir al carrito de compras</Link>
                     )

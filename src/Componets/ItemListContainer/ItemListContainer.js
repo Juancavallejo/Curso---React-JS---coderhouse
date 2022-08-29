@@ -1,15 +1,15 @@
 import ItemList from "../ItemList/ItemList"
 import { useParams } from 'react-router-dom'
-import { getdocumentsFireStore } from "../../services/firestore"
+import { obtenerDocumentosFirestore } from "../../services/firebase/firestore"
 import './ItemListContainer.css'
 import { Spinner } from "react-bootstrap"
-import { useAsync } from "../../hooks/useAsync"
+import { useCustomHooks } from "../../customHooks/useCustomHooks"
 
 
 const ItemListContainer = ({ mensajeBienvenida }) => {
-    const { categoryId } = useParams()
+    const {categoryId} = useParams()
 
-    const {datos,cargando,error} = useAsync ( () => getdocumentsFireStore(categoryId), [categoryId])
+    const {datos,cargando,error} = useCustomHooks ( () => obtenerDocumentosFirestore (categoryId), [categoryId])
 
     if (cargando) {
         return (
@@ -27,12 +27,11 @@ const ItemListContainer = ({ mensajeBienvenida }) => {
     }
 
     return (
-        <>
+        <div> 
             <h1 className="text-center fs-5 mt-5">{`${mensajeBienvenida} ${categoryId || ""}`}</h1>
-            <ItemList items={datos} />
-        </>
-
-    )
+            <ItemList itemsList={datos} />
+        </div>
+        )
 }
 
 export default ItemListContainer

@@ -2,15 +2,15 @@ import ItemDetail from "../ItemDetail/ItemDetail"
 import { useParams } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import "./ItemDetailContainer.css"
-import { getdocFireStore } from "../../services/firestore";
+import { obtenerdocFireStore } from "../../services/firebase/firestore";
 import { Spinner } from "react-bootstrap";
-import { useAsync } from "../../hooks/useAsync";
+import { useCustomHooks } from "../../customHooks/useCustomHooks";
 
 
-const ItemDetailContainer = () => {
-    const { productId } = useParams()
+const ItemDetailContainer = ({mensajeBienvenida}) => {
+    const {productId} = useParams()
 
-    const {datos,cargando,error} = useAsync ( () => getdocFireStore(productId), [productId] )
+    const {datos,cargando,error} = useCustomHooks ( () => obtenerdocFireStore(productId), [productId] )
 
     if (cargando) {
         return (
@@ -29,6 +29,7 @@ const ItemDetailContainer = () => {
 
     return (
         <Container>
+            <h2 className="text-center fs-5 mt-2"> {`${mensajeBienvenida}`} </h2>
             <div className="mainBox">
                 <ItemDetail {...datos} />
             </div>

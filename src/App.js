@@ -7,7 +7,7 @@ import ItemDetailContainer from './Componets/ItemDetailContainer/ItemDetailConta
 import Cart from './Componets/Cart/Cart';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartContextProvider } from './context/CartContext';
-import { ToastContextProvider } from './context/ToastContext';
+import { FormContextProvider } from './context/FormContext';
 import Checkout from './Componets/Checkout/Checkout';
 
 
@@ -15,21 +15,21 @@ function App() {
 
   return (
     <div className="App">
-      <ToastContextProvider>
       <CartContextProvider>
+        <FormContextProvider>
         <BrowserRouter>
           <NavbarBoostrap />
           <Routes>
             <Route path="/" element={<ItemListContainer mensajeBienvenida="Hola, buscamos poder ofrecerte las mejores experiencias de la mano de valiosos recipientes de experiencias provenientes de los lugares más emblematicos." />} />
             <Route path='/category/:categoryId' element={<ItemListContainer mensajeBienvenida='Listado productos de' />} />
-            <Route path='/detail/:productId' element={<ItemDetailContainer />} />
+            <Route path='/detail/:productId' element={<ItemDetailContainer mensajeBienvenida='Conoce más sobre:'/>} />
             <Route path='/cart' element={<Cart/>} />
             <Route path='/checkout' element= {<Checkout/>}/>
           </Routes>
           <Footer />
         </BrowserRouter>
+        </FormContextProvider>
       </CartContextProvider>
-      </ToastContextProvider>
     </div>
   );
 }
