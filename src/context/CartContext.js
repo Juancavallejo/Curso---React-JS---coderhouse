@@ -6,7 +6,7 @@ export const CartContextProvider = ({ children }) => {
     const [carritoDeCompras, setCarritoDeCompras] = useState([])
 
     const agregarItem = (itemParaAñadir) => {
-        if (!isInCart(itemParaAñadir.id)) {
+        if (!existe(itemParaAñadir.id)) {
             setCarritoDeCompras([...carritoDeCompras, itemParaAñadir])
         } else {
             setCarritoDeCompras(
@@ -39,7 +39,7 @@ export const CartContextProvider = ({ children }) => {
         setCarritoDeCompras([])
     }
 
-    const isInCart = (id) => {
+    const existe = (id) => {
         return carritoDeCompras.some(prod => prod.id === id)
     }
 
@@ -52,7 +52,7 @@ export const CartContextProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ carritoDeCompras, agregarItem, obtenerCantidad, isInCart, eliminarItem, limpiarCarrito, obtenerCantidadDeProductos, precioTotal }} >
+        <CartContext.Provider value={{ carritoDeCompras, agregarItem, obtenerCantidad, existe, eliminarItem, limpiarCarrito, obtenerCantidadDeProductos, precioTotal }} >
             {children}
         </CartContext.Provider>
     )

@@ -1,8 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import CardWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
 
@@ -24,16 +22,7 @@ const NavbarBoostrap = () => {
                         <Link className='btn btn-outline-dark mx-1' to='/category/Rios'>Rios</Link>
                         <Link className='btn btn-outline-dark mx-1' to='/category/Colombia'>Colombia</Link>
                     </Nav>
-                    <Form className="d-flex justify-content-end">
-                        <div className="d-flex mx-4 w-50"> <CardWidget /> </div>
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-dark">Search</Button>
-                    </Form>
+                    <div className="d-flex justify-content-end mx-5"> <CardWidget /> </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
