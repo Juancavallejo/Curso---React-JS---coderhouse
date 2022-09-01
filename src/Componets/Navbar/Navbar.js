@@ -9,7 +9,7 @@ const NavbarBoostrap = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
-                <Link className='btn btn-outline-dark mx-1' to="/">Ecommerce</Link>
+                <Link className='btn btn-outline-dark mx-1' to="/">Natural Souvenir</Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav

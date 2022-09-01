@@ -11,6 +11,7 @@ export const itemsDeFireStore = (doc) => {
         description: dataProducto.description,
         stock:dataProducto.stock, 
         container: dataProducto.container,
+        delivery:dataProducto.delivery
     }
     
     return productoAdaptado
